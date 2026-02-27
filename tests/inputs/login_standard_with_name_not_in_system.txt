@@ -1,0 +1,6 @@
+login
+standard
+Ghost User
+withdrawal
+00001
+logout
