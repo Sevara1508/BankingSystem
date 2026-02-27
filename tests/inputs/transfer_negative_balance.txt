@@ -1,0 +1,8 @@
+login 
+standard
+Bushrat Zahan
+transfer
+12345
+54321
+300.00
+logout

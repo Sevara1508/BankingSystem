@@ -1,0 +1,19 @@
+login 
+standard
+Bushrat Zahan
+withdrawal 
+12345
+20.00
+transfer
+12345
+54321
+70.00
+paybill
+12345
+CQ
+80.00
+deposit
+12345
+200.00
+logout
+

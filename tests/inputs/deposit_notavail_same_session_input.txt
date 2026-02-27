@@ -1,0 +1,10 @@
+login
+standard
+John Doe
+deposit
+12345
+500
+withdrawal
+12345
+500
+logout

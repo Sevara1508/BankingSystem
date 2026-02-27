@@ -1,0 +1,7 @@
+login 
+standard
+Bushrat Zahan
+paybill
+12345
+RU
+logout

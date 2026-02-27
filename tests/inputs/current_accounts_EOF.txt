@@ -1,0 +1,7 @@
+12345 Bushrat Zahan        A 00900.00
+54321 Nabiha Shah          A 00010.00
+00000 END_OF_FILE          D 00000.00
+99999 Mr. Anonymous        D 00000.00
+
+
+

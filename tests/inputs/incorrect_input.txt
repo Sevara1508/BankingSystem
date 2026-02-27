@@ -1,0 +1,16 @@
+login
+standard
+Bushrat Zahan
+withdrawal
+12345
+abc
+withdrawal
+12345
+-50.00
+withdrawal
+12345
+100.001
+paybill
+xyz
+gibberish
+logout
