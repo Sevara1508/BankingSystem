@@ -1,9 +1,31 @@
-> Enter Session Type (Standard/Admin):
-> Enter account holder name:
-Login successful.
-> Enter account number:
-> Enter company code (EC/CQ/FI):
-Enter amount to pay: 
-Error: Amount exceeds $2000.00 session limit.
-> Session ended. 
-Transaction file created.
+================================================================================
+Accounts loaded successfully
+5 accounts available
+
+================================================================================
+AVAILABLE COMMANDS:
+================================================================================
+login       - Start a session
+withdrawal  - Withdraw money
+transfer    - Transfer money between accounts
+paybill     - Pay a bill
+deposit     - Deposit money
+create      - Create account (admin only)
+delete      - Delete account (admin only)
+disable     - Disable account (admin only)
+changeplan  - Change plan SP->NP (admin only)
+logout      - End session
+quit        - Exit program
+================================================================================
+
+Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
+Enter command: Enter account number: ERROR: Account does not exist
+Enter command: ERROR: Unknown command 'fi'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '2500.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: Successfully wrote 0 transactions to daily_transaction.txt
+Session ended. Transactions written to daily_transaction.txt
+Goodbye!
+Enter command: 
+End of input. Exiting.
