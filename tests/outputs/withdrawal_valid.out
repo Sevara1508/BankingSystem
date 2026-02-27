@@ -1,0 +1,7 @@
+> > Enter Session Type (Standard/Admin): > Enter account holder name: Login successful.
+> Enter account number: ERROR: Account does not exist
+> Error: Unknown command '100'
+> Successfully wrote 0 transactions to daily_transaction.txt
+Session ended. Transactions written to daily_transaction.txt
+Goodbye!
+> 

@@ -18,13 +18,5 @@ logout      - End session
 quit        - Exit program
 ================================================================================
 
-Enter command: Session type (standard/admin): ERROR: Invalid session type. Must be 'standard' or 'admin'
-Enter command: ERROR: Unknown command 'random'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: ERROR: Unknown command 'standard'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: ERROR: Unknown command 'bushrat zahan'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: ERROR: Not logged in
-Enter command: 
+Enter command: Enter command: Enter command: 
 End of input. Exiting.
