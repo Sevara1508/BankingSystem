@@ -1,0 +1,9 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter company code (EC/CQ/FI):
+> Enter amount to pay: 
+Payment successful. New balance: $124.00
+> Session ended. 
+Transaction file created.

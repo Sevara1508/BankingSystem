@@ -1,0 +1,10 @@
+> Enter Session Type (Standard/Admin):
+Login successful.
+> Enter account holder name:
+> Enter account number:
+Account for John Doe successfully disabled.
+> Enter account holder name:
+> Enter account number:
+Error: No further transactions allowed on disabled account.
+> Session ended.
+Transaction file written.

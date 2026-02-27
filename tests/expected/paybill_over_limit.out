@@ -1,0 +1,9 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter company code (EC/CQ/FI):
+Enter amount to pay: 
+Error: Amount exceeds $2000.00 session limit.
+> Session ended. 
+Transaction file created.

@@ -1,0 +1,8 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter amount to withdraw.
+Withdrawal successful. New balance: $150.00
+> Session ended.
+Transaction file written.

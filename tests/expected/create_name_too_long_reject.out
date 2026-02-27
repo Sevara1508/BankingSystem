@@ -1,0 +1,6 @@
+> Enter Session Type (Standard/Admin):
+Login successful.
+> Enter account holder name:
+Error: Account holder name has too many characters.
+Session ended.
+Transaction file written.

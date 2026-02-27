@@ -1,0 +1,9 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter account number that money will be transferred to:
+> Enter amount to transfer: 
+Transfer successful. New balance: $400.00
+> Session ended.
+Transaction file written.

@@ -1,0 +1,8 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter company code (EC/CQ/FI):
+Error: Invalid company. Allowed companies: EC, CQ, FI.
+> Session ended. 
+Transaction file created.

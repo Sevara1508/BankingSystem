@@ -1,0 +1,10 @@
+> Enter Session Type (Standard/Admin):
+Login successful.
+> Enter name of account holder:
+> Enter account number:
+Account for John Doe successfully deleted.
+> Enter account holder name:
+> Enter account number:
+Error: Account does not exist.
+> Session ended.
+Transaction file written.

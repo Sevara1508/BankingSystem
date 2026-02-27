@@ -1,0 +1,13 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter account number that money will be transferred to:
+> Enter amount to transfer: 
+Transfer successful. New balance: $600.00
+> Enter account number:
+> Enter account number that money will be transferred to:
+> Enter amount to transfer: 
+Error: Transfer limit exceeded.
+> Session ended.
+Transaction file written.

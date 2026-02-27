@@ -1,0 +1,6 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+Error: Privileged transaction not allowed.
+> Session ended.
+Transaction file written.

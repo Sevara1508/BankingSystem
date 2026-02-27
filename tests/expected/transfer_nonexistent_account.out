@@ -1,0 +1,8 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter account number that money will be transferred to:
+Error: Destination account does not exist.
+> Session ended. 
+Transaction file created.

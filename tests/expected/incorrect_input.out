@@ -1,0 +1,18 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter amount to withdraw:
+Error: Amount must be a positive number.
+> Enter account number:
+> Enter amount to withdraw:
+Error: Amount must be a positive number.
+> Enter account number:
+> Enter amount to withdraw:
+Error: Amount must have at most 2 decimal places.
+> Enter account number:
+> Enter company code (EC/CQ/FI):
+Error: Invalid company. Allowed companies: EC, CQ, FI.
+Error: Unknown command.
+> Session ended. 
+Transaction file created.

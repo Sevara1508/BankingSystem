@@ -1,0 +1,11 @@
+> Enter Session Type (Standard/Admin):
+> Enter account holder name:
+Login successful.
+> Enter account number:
+> Enter amount to deposit:
+Deposit successful. New balance: $500.00
+> Enter account number:
+> Enter amount to withdraw:
+Error: Deposited funds are not available until next session.
+> Session ended.
+Transaction file written.
