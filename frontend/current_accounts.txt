@@ -1,4 +1,4 @@
-00001 John Doe             A 01000.00
+00001 John Doe             A 00300.00
 00002 Jane Smith           A 02500.00
 00003 Bob Johnson          A 00500.00
 00004 Alice Williams       D 01500.00
