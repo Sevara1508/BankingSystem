@@ -25,20 +25,23 @@ class FrontEndApp:
 
     """
 
-    def __init__(self, account_manager):
+    def __init__(self, account_manager, transaction_file="daily_transaction.txt"):
         """
         Initialize the FrontEndApp.
 
         :param account_manager: Instance of AccountManager with loaded accounts
+        :param transaction_file: Path to output transaction file
 
         """
         self.account_manager = account_manager
+        self.transaction_file = transaction_file
         self.session_manager = SessionManager()
         self.transaction_log = TransactionLog()
         self.transaction_processor = TransactionProcessor(
             self.session_manager,
             self.account_manager,
-            self.transaction_log
+            self.transaction_log,
+            self.transaction_file
         )
 
     def main(self):
@@ -122,20 +125,16 @@ class FrontEndApp:
         session_type = input("Session type (standard/admin): ").strip().lower()
 
         if session_type == "standard":
-            # Get username for standard login
             user_name = input("Enter your name: ").strip()
 
-            # ADD THIS VALIDATION - INDENTED CORRECTLY INSIDE THE IF BLOCK
             if not self.account_manager.user_exists(user_name):
                 print(f"ERROR: User '{user_name}' does not have any accounts")
                 return
                 
-            # Start session in SessionManager
             self.session_manager.start_standard_session(user_name)
             print(f"Login successful. Standard mode.")
 
         elif session_type == "admin":
-            # Start admin session
             self.session_manager.start_admin_session()
             print("Login successful. Admin mode.")
 

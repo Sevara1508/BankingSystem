@@ -22,8 +22,8 @@ Enter command: Session type (standard/admin): Enter your name: Login successful.
 Enter command: Enter account number to transfer FROM: Enter account number to transfer TO: Enter amount to transfer: $Transfer successful.
 Source balance: $100.00
 Destination balance: $2700.00
-Enter command: Successfully wrote 2 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 2 transactions to ../outputs/transfer_valid.atf
+Session ended. Transactions written to ../outputs/transfer_valid.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

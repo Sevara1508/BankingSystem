@@ -12,18 +12,21 @@ sys.stdout.reconfigure(encoding='utf-8') #to fix checkmark error
 
 def main():
     """Main function to run the banking system front end."""
-    
+
+    accounts_file = sys.argv[1] if len(sys.argv) > 1 else "current_accounts.txt"
+    transaction_file = sys.argv[2] if len(sys.argv) > 2 else "daily_transaction.txt"
+
     # Print header
     print("=" * 80)
     
     # Load accounts from file
     account_manager = AccountManager()
     try:
-        account_manager.load_from_file("current_accounts.txt")
+        account_manager.load_from_file(accounts_file)
         print("✓ Accounts loaded successfully")
         print(f"✓ {len(account_manager.accounts)} accounts available")
     except FileNotFoundError:
-        print("ERROR: current_accounts.txt not found!")
+        print(f"ERROR: {accounts_file} not found!")
         print("Make sure the file is in the same folder as this script.")
         return
     
@@ -46,7 +49,7 @@ def main():
     print()
     
     # Create and run FrontEndApp
-    app = FrontEndApp(account_manager)
+    app = FrontEndApp(account_manager, transaction_file)
     app.main()
 
 

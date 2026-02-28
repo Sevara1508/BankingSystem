@@ -22,8 +22,8 @@ Enter command: Session type (standard/admin): Enter your name: Login successful.
 Enter command: Enter account number: Enter amount to deposit: $Deposit successful. New balance: $500.00
 NOTE: Deposited funds are not available for withdrawal in current session.
 Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $100.00
-Enter command: Successfully wrote 2 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 2 transactions to ../outputs/deposit_notavail_same_session.atf
+Session ended. Transactions written to ../outputs/deposit_notavail_same_session.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

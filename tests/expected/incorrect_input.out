@@ -25,8 +25,8 @@ Enter command: Enter account number: Enter amount to withdraw: $ERROR: Would exc
 Enter command: Enter account number: ERROR: Account does not exist
 Enter command: ERROR: Unknown command 'gibberish'
 Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 0 transactions to ../outputs/incorrect_input.atf
+Session ended. Transactions written to ../outputs/incorrect_input.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

@@ -20,8 +20,8 @@ quit        - Exit program
 
 Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
 Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $0.00
-Enter command: Successfully wrote 1 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 1 transactions to ../outputs/account_at_exactly_zero_balance.atf
+Session ended. Transactions written to ../outputs/account_at_exactly_zero_balance.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

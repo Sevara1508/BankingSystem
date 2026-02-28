@@ -20,8 +20,8 @@ quit        - Exit program
 
 Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
 Enter command: Enter account number to transfer FROM: Enter account number to transfer TO: Enter amount to transfer: $ERROR: Insufficient funds in source account
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 0 transactions to ../outputs/transfer_negative_balance.atf
+Session ended. Transactions written to ../outputs/transfer_negative_balance.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

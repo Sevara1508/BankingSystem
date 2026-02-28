@@ -22,8 +22,8 @@ Enter command: Session type (standard/admin): Enter your name: Login successful.
 Enter command: Enter account number: ERROR: Account does not belong to current user
 Enter command: ERROR: Unknown command '100'
 Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 0 transactions to ../outputs/standard_wrong_account.atf
+Session ended. Transactions written to ../outputs/standard_wrong_account.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

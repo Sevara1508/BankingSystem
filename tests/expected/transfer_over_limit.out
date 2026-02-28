@@ -23,8 +23,8 @@ Enter command: Enter account number to transfer FROM: Enter account number to tr
 Source balance: $1900.00
 Destination balance: $1350.00
 Enter command: Enter account number to transfer FROM: Enter account number to transfer TO: Enter amount to transfer: $ERROR: Would exceed $1000.0 session limit
-Enter command: Successfully wrote 2 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 2 transactions to ../outputs/transfer_over_limit.atf
+Session ended. Transactions written to ../outputs/transfer_over_limit.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

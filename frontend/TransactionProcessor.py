@@ -34,7 +34,7 @@ class TransactionProcessor:
 
     """
 
-    def __init__(self, session_manager, account_manager, transaction_log):
+    def __init__(self, session_manager, account_manager, transaction_log, transaction_file="daily_transaction.txt"):
         """
         Initialize TransactionProcessor.
 
@@ -42,11 +42,13 @@ class TransactionProcessor:
             session_manager: SessionManager instance
             account_manager: AccountManager instance
             transaction_log: TransactionLog instance
+            transaction_file: Path to output transaction file
 
         """
         self.session = session_manager
         self.account_manager = account_manager
         self.transaction_log = transaction_log
+        self.transaction_file = transaction_file
         self.scanner = input  
 
     def process_withdrawal(self):
@@ -65,7 +67,6 @@ class TransactionProcessor:
             print("ERROR: Must be logged in first")
             return
 
-        # For admin, ask for name first
         if self.session.is_admin():
             name = self.scanner("Enter account holder's name: ").strip()
             if not name:
@@ -83,13 +84,11 @@ class TransactionProcessor:
             print("ERROR: Account is disabled")
             return
 
-        # For admin, verify the name matches
         if self.session.is_admin():
             if account.holder_name.strip() != name.strip():
                 print("ERROR: Account holder name does not match")
                 return
         else:
-            # For standard user, verify ownership
             if not account.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Account does not belong to current user")
                 return
@@ -139,7 +138,6 @@ class TransactionProcessor:
             print("ERROR: Must be logged in first")
             return
         
-        # For admin, ask for source account holder's name first
         if self.session.is_admin():
             name = self.scanner("Enter source account holder's name: ").strip()
             if not name:
@@ -157,13 +155,11 @@ class TransactionProcessor:
             print("ERROR: Source account is disabled")
             return
 
-        # For admin, verify the name matches
         if self.session.is_admin():
             if account_from.holder_name.strip() != name.strip():
                 print("ERROR: Source account holder name does not match")
                 return
         else:
-            # For standard user, verify ownership
             if not account_from.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Source account does not belong to current user")
                 return
@@ -224,7 +220,6 @@ class TransactionProcessor:
             print("ERROR: Must be logged in first")
             return
         
-        # For admin, ask for account holder's name first
         if self.session.is_admin():
             name = self.scanner("Enter account holder's name: ").strip()
             if not name:
@@ -248,13 +243,11 @@ class TransactionProcessor:
             print("ERROR: Account is disabled")
             return
 
-        # For admin, verify the name matches
         if self.session.is_admin():
             if account.holder_name.strip() != name.strip():
                 print("ERROR: Account holder name does not match")
                 return
         else:
-            # For standard user, verify ownership
             if not account.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Account does not belong to current user")
                 return
@@ -281,7 +274,6 @@ class TransactionProcessor:
         if account.withdraw(amount):
             self.session.record_pay_bill(amount)
             self.transaction_log.log_paybill(acc_num, amount, company)
-
             print(f"Payment to {valid_companies[company]} successful.")
             print(f"New balance: ${account.balance:.2f}")
         else:
@@ -306,7 +298,6 @@ class TransactionProcessor:
             print("ERROR: Must be logged in first")
             return
         
-        # For admin, ask for account holder's name first
         if self.session.is_admin():
             name = self.scanner("Enter account holder's name: ").strip()
             if not name:
@@ -324,7 +315,6 @@ class TransactionProcessor:
             print("ERROR: Account is disabled")
             return
 
-        # For admin, verify the name matches
         if self.session.is_admin():
             if account.holder_name.strip() != name.strip():
                 print("ERROR: Account holder name does not match")
@@ -365,8 +355,7 @@ class TransactionProcessor:
             print("ERROR: Name cannot be empty")
             return
 
-        #add maximum length check (adjust the number as needed)
-        MAX_NAME_LENGTH = 20  #req is 20
+        MAX_NAME_LENGTH = 20
         if len(name) > MAX_NAME_LENGTH:
             print(f"ERROR: Name cannot exceed {MAX_NAME_LENGTH} characters")
             return
@@ -524,9 +513,8 @@ class TransactionProcessor:
             print("ERROR: Not logged in")
             return
 
-        filename = "daily_transaction.txt"
-        self.transaction_log.write_to_file(filename)
+        self.transaction_log.write_to_file(self.transaction_file)
         self.session.logout()
 
-        print(f"Session ended. Transactions written to {filename}")
+        print(f"Session ended. Transactions written to {self.transaction_file}")
         print("Goodbye!")

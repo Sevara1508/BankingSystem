@@ -20,8 +20,8 @@ quit        - Exit program
 
 Enter command: ERROR: Not logged in
 Enter command: Session type (standard/admin): Login successful. Admin mode.
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 0 transactions to ../outputs/logout_without_login.atf
+Session ended. Transactions written to ../outputs/logout_without_login.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

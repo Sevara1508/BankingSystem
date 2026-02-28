@@ -21,8 +21,8 @@ quit        - Exit program
 Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
 Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $2498.00
 Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $2495.00
-Enter command: Successfully wrote 2 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 2 transactions to ../outputs/mixed_case_commands.atf
+Session ended. Transactions written to ../outputs/mixed_case_commands.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

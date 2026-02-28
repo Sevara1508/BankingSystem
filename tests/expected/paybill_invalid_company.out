@@ -20,8 +20,8 @@ quit        - Exit program
 
 Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
 Enter command: Enter account number: Enter company code (EC, CQ, or FI): ERROR: Invalid company. Must be EC, CQ, or FI
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
+Enter command: Successfully wrote 0 transactions to ../outputs/paybill_invalid_company.atf
+Session ended. Transactions written to ../outputs/paybill_invalid_company.atf
 Goodbye!
 Enter command: 
 End of input. Exiting.

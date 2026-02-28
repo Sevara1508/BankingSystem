@@ -1,0 +1,30 @@
+================================================================================
+✓ Accounts loaded successfully
+✓ 6 accounts available
+
+================================================================================
+AVAILABLE COMMANDS:
+================================================================================
+login       - Start a session
+withdrawal  - Withdraw money
+transfer    - Transfer money between accounts
+paybill     - Pay a bill
+deposit     - Deposit money
+create      - Create account (admin only)
+delete      - Delete account (admin only)
+disable     - Disable account (admin only)
+changeplan  - Change plan SP→NP (admin only)
+logout      - End session
+quit        - Exit program
+================================================================================
+
+Enter command: ERROR: Unknown command '12345 bushrat zahan        a 00900.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '54321 nabiha shah          a 00010.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '00000 end_of_file          d 00000.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '99999 mr. anonymous        d 00000.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: Enter command: Enter command: Enter command: 
+End of input. Exiting.
