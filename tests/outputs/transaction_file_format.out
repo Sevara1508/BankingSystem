@@ -1,0 +1,34 @@
+================================================================================
+✓ Accounts loaded successfully
+✓ 6 accounts available
+
+================================================================================
+AVAILABLE COMMANDS:
+================================================================================
+login       - Start a session
+withdrawal  - Withdraw money
+transfer    - Transfer money between accounts
+paybill     - Pay a bill
+deposit     - Deposit money
+create      - Create account (admin only)
+delete      - Delete account (admin only)
+disable     - Disable account (admin only)
+changeplan  - Change plan SP→NP (admin only)
+logout      - End session
+quit        - Exit program
+================================================================================
+
+Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
+Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $2480.00
+Enter command: Enter account number to transfer FROM: Enter account number to transfer TO: Enter amount to transfer: $Transfer successful.
+Source balance: $2410.00
+Destination balance: $1070.00
+Enter command: Enter account number: Enter company code (EC, CQ, or FI): Enter amount to pay: $Payment to Credit Card Company Q successful.
+New balance: $2330.00
+Enter command: Enter account number: Enter amount to deposit: $Deposit successful. New balance: $2530.00
+NOTE: Deposited funds are not available for withdrawal in current session.
+Enter command: Successfully wrote 5 transactions to daily_transaction.txt
+Session ended. Transactions written to daily_transaction.txt
+Goodbye!
+Enter command: Enter command: 
+End of input. Exiting.

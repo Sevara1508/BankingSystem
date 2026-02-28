@@ -2,18 +2,18 @@ login
 standard
 Bushrat Zahan
 withdrawal 
-12345
+00006
 20.00
 transfer
-12345
-54321
+00006
+00001
 70.00
 paybill
-12345
+00006
 CQ
 80.00
 deposit
-12345
+00006
 200.00
 logout
 

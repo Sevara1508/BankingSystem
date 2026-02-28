@@ -1,0 +1,27 @@
+================================================================================
+✓ Accounts loaded successfully
+✓ 6 accounts available
+
+================================================================================
+AVAILABLE COMMANDS:
+================================================================================
+login       - Start a session
+withdrawal  - Withdraw money
+transfer    - Transfer money between accounts
+paybill     - Pay a bill
+deposit     - Deposit money
+create      - Create account (admin only)
+delete      - Delete account (admin only)
+disable     - Disable account (admin only)
+changeplan  - Change plan SP→NP (admin only)
+logout      - End session
+quit        - Exit program
+================================================================================
+
+Enter command: Session type (standard/admin): Login successful. Admin mode.
+Enter command: Enter account holder name: Enter initial balance: $Account created successfully. Account number: 00000
+Enter command: Successfully wrote 1 transactions to daily_transaction.txt
+Session ended. Transactions written to daily_transaction.txt
+Goodbye!
+Enter command: 
+End of input. Exiting.

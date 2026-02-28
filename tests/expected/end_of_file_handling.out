@@ -1,5 +1,23 @@
-> Enter Session Type (Standard/Admin):
-> Enter account holder name:
-Error: Account does not exist.
-> Session ended. 
-Transaction file created.
+================================================================================
+✓ Accounts loaded successfully
+✓ 6 accounts available
+
+================================================================================
+AVAILABLE COMMANDS:
+================================================================================
+login       - Start a session
+withdrawal  - Withdraw money
+transfer    - Transfer money between accounts
+paybill     - Pay a bill
+deposit     - Deposit money
+create      - Create account (admin only)
+delete      - Delete account (admin only)
+disable     - Disable account (admin only)
+changeplan  - Change plan SP→NP (admin only)
+logout      - End session
+quit        - Exit program
+================================================================================
+
+Enter command: Session type (standard/admin): Enter your name: ERROR: User 'Mr. Anonymous' does not have any accounts
+Enter command: 
+End of input. Exiting.

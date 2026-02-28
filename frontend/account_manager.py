@@ -71,6 +71,16 @@ class AccountManager:
                     plan="SP"
                 )
 
+    def user_exists(self, user_name):
+        """
+        Check if a user exists in any account.
+        
+        """
+        for acc_num, account in self.accounts.items():
+            if account.holder_name.strip().lower() == user_name.strip().lower():
+                return True
+        return False
+
     def get_account(self, account_number):
         """
         Returns BankAccount object for given account number, or None if not found.

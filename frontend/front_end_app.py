@@ -124,16 +124,19 @@ class FrontEndApp:
         if session_type == "standard":
             # Get username for standard login
             user_name = input("Enter your name: ").strip()
-            
+
+            # ADD THIS VALIDATION - INDENTED CORRECTLY INSIDE THE IF BLOCK
+            if not self.account_manager.user_exists(user_name):
+                print(f"ERROR: User '{user_name}' does not have any accounts")
+                return
+                
             # Start session in SessionManager
             self.session_manager.start_standard_session(user_name)
-            
             print(f"Login successful. Standard mode.")
 
         elif session_type == "admin":
             # Start admin session
             self.session_manager.start_admin_session()
-            
             print("Login successful. Admin mode.")
 
         else:

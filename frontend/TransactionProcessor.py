@@ -51,21 +51,26 @@ class TransactionProcessor:
 
     def process_withdrawal(self):
         """
-        Process withdrawal transaction (code 01).
+            Process withdrawal transaction (code 01).
 
-        Validates:
-        - User is logged in
-        - Account exists and is active
-        - Ownership (if standard mode)
-        - Positive amount
-        - Session withdrawal limit
-        - Sufficient funds
-
+            Validates:
+            - User is logged in
+            - Account exists and is active
+            - Ownership (if standard mode) OR name verification (if admin mode)
+            - Positive amount
+            - Session withdrawal limit
+            - Sufficient funds
         """
-
         if not self.session.is_logged_in():
             print("ERROR: Must be logged in first")
             return
+
+        # For admin, ask for name first
+        if self.session.is_admin():
+            name = self.scanner("Enter account holder's name: ").strip()
+            if not name:
+                print("ERROR: Name cannot be empty")
+                return
 
         acc_num = self.scanner("Enter account number: ").strip()
         account = self.account_manager.get_account(acc_num)
@@ -78,7 +83,13 @@ class TransactionProcessor:
             print("ERROR: Account is disabled")
             return
 
-        if not self.session.is_admin():
+        # For admin, verify the name matches
+        if self.session.is_admin():
+            if account.holder_name.strip() != name.strip():
+                print("ERROR: Account holder name does not match")
+                return
+        else:
+            # For standard user, verify ownership
             if not account.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Account does not belong to current user")
                 return
@@ -103,6 +114,7 @@ class TransactionProcessor:
         else:
             print("ERROR: Insufficient funds")
 
+
     def process_transfer(self):
         """
         Process transfer transaction (code 02).
@@ -111,7 +123,7 @@ class TransactionProcessor:
         - User is logged in
         - Source and destination accounts exist
         - Accounts are active
-        - Ownership (if standard mode)
+        - Ownership (if standard mode) OR name verification (if admin mode)
         - Positive amount
         - Session transfer limit
         - Sufficient funds
@@ -126,6 +138,13 @@ class TransactionProcessor:
         if not self.session.is_logged_in():
             print("ERROR: Must be logged in first")
             return
+        
+        # For admin, ask for source account holder's name first
+        if self.session.is_admin():
+            name = self.scanner("Enter source account holder's name: ").strip()
+            if not name:
+                print("ERROR: Name cannot be empty")
+                return
 
         from_acc = self.scanner("Enter account number to transfer FROM: ").strip()
         account_from = self.account_manager.get_account(from_acc)
@@ -138,7 +157,13 @@ class TransactionProcessor:
             print("ERROR: Source account is disabled")
             return
 
-        if not self.session.is_admin():
+        # For admin, verify the name matches
+        if self.session.is_admin():
+            if account_from.holder_name.strip() != name.strip():
+                print("ERROR: Source account holder name does not match")
+                return
+        else:
+            # For standard user, verify ownership
             if not account_from.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Source account does not belong to current user")
                 return
@@ -187,7 +212,7 @@ class TransactionProcessor:
         Validates:
         - User is logged in
         - Account exists and is active
-        - Ownership (if standard mode)
+        - Ownership (if standard mode) OR name verification (if admin mode)
         - Valid company code
         - Positive amount
         - Session paybill limit
@@ -198,6 +223,13 @@ class TransactionProcessor:
         if not self.session.is_logged_in():
             print("ERROR: Must be logged in first")
             return
+        
+        # For admin, ask for account holder's name first
+        if self.session.is_admin():
+            name = self.scanner("Enter account holder's name: ").strip()
+            if not name:
+                print("ERROR: Name cannot be empty")
+                return
 
         valid_companies = {
             "EC": "The Bright Light Electric Company",
@@ -216,7 +248,13 @@ class TransactionProcessor:
             print("ERROR: Account is disabled")
             return
 
-        if not self.session.is_admin():
+        # For admin, verify the name matches
+        if self.session.is_admin():
+            if account.holder_name.strip() != name.strip():
+                print("ERROR: Account holder name does not match")
+                return
+        else:
+            # For standard user, verify ownership
             if not account.is_valid_for(self.session.get_current_user()):
                 print("ERROR: Account does not belong to current user")
                 return
@@ -257,6 +295,7 @@ class TransactionProcessor:
         - User is logged in
         - Account exists and is active
         - Positive amount
+        - Name verification (if admin mode)
 
         Note:
         Deposited funds cannot be used for withdrawal in the same session.
@@ -266,6 +305,13 @@ class TransactionProcessor:
         if not self.session.is_logged_in():
             print("ERROR: Must be logged in first")
             return
+        
+        # For admin, ask for account holder's name first
+        if self.session.is_admin():
+            name = self.scanner("Enter account holder's name: ").strip()
+            if not name:
+                print("ERROR: Name cannot be empty")
+                return
 
         acc_num = self.scanner("Enter account number: ").strip()
         account = self.account_manager.get_account(acc_num)
@@ -277,6 +323,12 @@ class TransactionProcessor:
         if account.status != 'A':
             print("ERROR: Account is disabled")
             return
+
+        # For admin, verify the name matches
+        if self.session.is_admin():
+            if account.holder_name.strip() != name.strip():
+                print("ERROR: Account holder name does not match")
+                return
 
         try:
             amount = float(self.scanner("Enter amount to deposit: $"))
@@ -313,6 +365,12 @@ class TransactionProcessor:
             print("ERROR: Name cannot be empty")
             return
 
+        #add maximum length check (adjust the number as needed)
+        MAX_NAME_LENGTH = 20  #req is 20
+        if len(name) > MAX_NAME_LENGTH:
+            print(f"ERROR: Name cannot exceed {MAX_NAME_LENGTH} characters")
+            return
+
         try:
             balance = float(self.scanner("Enter initial balance: $"))
             if balance < 0:
@@ -329,6 +387,7 @@ class TransactionProcessor:
             print(f"Account created successfully. Account number: {account_num}")
         else:
             print("ERROR: Could not create account")
+            
 
     def process_delete(self):
         """
@@ -346,6 +405,13 @@ class TransactionProcessor:
             return
 
         name = self.scanner("Enter account holder name: ").strip()
+        if not name:
+            print("ERROR: Name cannot be empty")
+            return
+        if len(name) > 20:
+            print("ERROR: Name cannot exceed 20 characters")
+            return
+
         acc_num = self.scanner("Enter account number: ").strip()
 
         account = self.account_manager.get_account(acc_num)
@@ -366,7 +432,6 @@ class TransactionProcessor:
         """
         Process account disable (code 07).
         Admin-only transaction.
-
         """
 
         if not self.session.is_logged_in():
@@ -378,6 +443,13 @@ class TransactionProcessor:
             return
 
         name = self.scanner("Enter account holder name: ").strip()
+        if not name:
+            print("ERROR: Name cannot be empty")
+            return
+        if len(name) > 20:
+            print("ERROR: Name cannot exceed 20 characters")
+            return
+
         acc_num = self.scanner("Enter account number: ").strip()
 
         account = self.account_manager.get_account(acc_num)
@@ -393,6 +465,7 @@ class TransactionProcessor:
         self.transaction_log.log_disable(acc_num)
 
         print(f"Account {acc_num} disabled successfully.")
+
 
     def process_change_plan(self):
         """
@@ -410,6 +483,13 @@ class TransactionProcessor:
             return
 
         name = self.scanner("Enter account holder name: ").strip()
+        if not name:
+            print("ERROR: Name cannot be empty")
+            return
+        if len(name) > 20:
+            print("ERROR: Name cannot exceed 20 characters")
+            return
+
         acc_num = self.scanner("Enter account number: ").strip()
 
         account = self.account_manager.get_account(acc_num)
@@ -430,13 +510,14 @@ class TransactionProcessor:
 
         print(f"Account {acc_num} plan changed from SP to NP successfully.")
 
+
     def process_logout(self):
         """
         Process logout (code 00).
 
         - Writes transaction file
         - Ends session
-        
+
         """
 
         if not self.session.is_logged_in():

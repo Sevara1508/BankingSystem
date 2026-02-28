@@ -7,6 +7,8 @@ Loads accounts and runs FrontEndApp.
 from account_manager import AccountManager
 from front_end_app import FrontEndApp
 
+import sys
+sys.stdout.reconfigure(encoding='utf-8') #to fix checkmark error
 
 def main():
     """Main function to run the banking system front end."""
