@@ -1,6 +1,6 @@
 ================================================================================
-Accounts loaded successfully
-5 accounts available
+✓ Accounts loaded successfully
+✓ 6 accounts available
 
 ================================================================================
 AVAILABLE COMMANDS:
@@ -13,17 +13,15 @@ deposit     - Deposit money
 create      - Create account (admin only)
 delete      - Delete account (admin only)
 disable     - Disable account (admin only)
-changeplan  - Change plan SP->NP (admin only)
+changeplan  - Change plan SP→NP (admin only)
 logout      - End session
 quit        - Exit program
 ================================================================================
 
 Enter command: Session type (standard/admin): Login successful. Admin mode.
-Enter command: Enter account holder name: Enter account number: ERROR: Account does not exist
-Enter command: Enter account number: ERROR: Account does not exist
-Enter command: ERROR: Unknown command '12345'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
+Enter command: Enter account holder name: Enter account number: Account 00003 disabled successfully.
+Enter command: Enter account holder's name: Enter account number: ERROR: Account is disabled
+Enter command: Successfully wrote 1 transactions to daily_transaction.txt
 Session ended. Transactions written to daily_transaction.txt
 Goodbye!
 Enter command: 

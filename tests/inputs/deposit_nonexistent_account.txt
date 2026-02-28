@@ -2,5 +2,5 @@ login
 standard
 John Doe
 deposit
-00001
+99999
 logout

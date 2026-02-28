@@ -1,6 +1,6 @@
 ================================================================================
 ✓ Accounts loaded successfully
-✓ 5 accounts available
+✓ 6 accounts available
 
 ================================================================================
 AVAILABLE COMMANDS:
@@ -18,10 +18,6 @@ logout      - End session
 quit        - Exit program
 ================================================================================
 
-Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
-Enter command: Enter account number: ERROR: Account does not belong to current user
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
-Goodbye!
+Enter command: Session type (standard/admin): Enter your name: ERROR: User 'Ghost User' does not have any accounts
 Enter command: 
 End of input. Exiting.

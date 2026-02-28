@@ -2,6 +2,6 @@ login
 standard
 Bushrat Zahan
 transfer
-12345
+00006
 99999
 logout

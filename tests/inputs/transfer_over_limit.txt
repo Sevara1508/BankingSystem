@@ -1,12 +1,12 @@
 login
 standard
-John Doe
+Jane Smith
 transfer
-12345
-54321
+00002
+00005
 600
 transfer
-12345
-54321
+00002
+00005
 500
 logout

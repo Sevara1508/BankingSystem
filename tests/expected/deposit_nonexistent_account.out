@@ -1,6 +1,6 @@
 ================================================================================
-Accounts loaded successfully
-5 accounts available
+✓ Accounts loaded successfully
+✓ 6 accounts available
 
 ================================================================================
 AVAILABLE COMMANDS:
@@ -13,7 +13,7 @@ deposit     - Deposit money
 create      - Create account (admin only)
 delete      - Delete account (admin only)
 disable     - Disable account (admin only)
-changeplan  - Change plan SP->NP (admin only)
+changeplan  - Change plan SP→NP (admin only)
 logout      - End session
 quit        - Exit program
 ================================================================================

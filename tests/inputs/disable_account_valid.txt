@@ -1,9 +1,9 @@
 login
 admin
 disable
-John Doe
-12345
+Bob Johnson
+00003
 withdrawal
-John Doe
-12345
+Bob Johnson
+00003
 logout

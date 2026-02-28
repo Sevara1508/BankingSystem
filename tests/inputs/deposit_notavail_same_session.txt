@@ -3,8 +3,8 @@ standard
 John Doe
 deposit
 00001
-1000
+200
 withdrawal
 00001
-500
+400
 logout

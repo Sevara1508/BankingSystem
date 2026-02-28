@@ -1,8 +1,8 @@
 login 
 standard
-Bushrat Zahan
+John Doe
 transfer
-12345
-54321
-300.00
+00001
+00002
+301.00
 logout

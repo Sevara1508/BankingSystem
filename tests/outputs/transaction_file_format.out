@@ -22,7 +22,7 @@ Enter command: Session type (standard/admin): Enter your name: Login successful.
 Enter command: Enter account number: Enter amount to withdraw: $Withdrawal successful. New balance: $2480.00
 Enter command: Enter account number to transfer FROM: Enter account number to transfer TO: Enter amount to transfer: $Transfer successful.
 Source balance: $2410.00
-Destination balance: $1070.00
+Destination balance: $370.00
 Enter command: Enter account number: Enter company code (EC, CQ, or FI): Enter amount to pay: $Payment to Credit Card Company Q successful.
 New balance: $2330.00
 Enter command: Enter account number: Enter amount to deposit: $Deposit successful. New balance: $2530.00

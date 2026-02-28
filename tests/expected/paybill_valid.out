@@ -1,6 +1,6 @@
 ================================================================================
-Accounts loaded successfully
-5 accounts available
+✓ Accounts loaded successfully
+✓ 6 accounts available
 
 ================================================================================
 AVAILABLE COMMANDS:
@@ -13,18 +13,15 @@ deposit     - Deposit money
 create      - Create account (admin only)
 delete      - Delete account (admin only)
 disable     - Disable account (admin only)
-changeplan  - Change plan SP->NP (admin only)
+changeplan  - Change plan SP→NP (admin only)
 logout      - End session
 quit        - Exit program
 ================================================================================
 
 Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
-Enter command: Enter account number: ERROR: Account does not exist
-Enter command: ERROR: Unknown command 'ec'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: ERROR: Unknown command '400.00'
-Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
+Enter command: Enter account number: Enter company code (EC, CQ, or FI): Enter amount to pay: $Payment to The Bright Light Electric Company successful.
+New balance: $2100.00
+Enter command: Successfully wrote 1 transactions to daily_transaction.txt
 Session ended. Transactions written to daily_transaction.txt
 Goodbye!
 Enter command: 

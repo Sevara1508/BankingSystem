@@ -18,10 +18,13 @@ logout      - End session
 quit        - Exit program
 ================================================================================
 
-Enter command: Session type (standard/admin): Enter your name: Login successful. Standard mode.
-Enter command: ERROR: Already logged in. Please logout first.
-Enter command: Successfully wrote 0 transactions to daily_transaction.txt
-Session ended. Transactions written to daily_transaction.txt
-Goodbye!
-Enter command: 
+Enter command: ERROR: Unknown command '12345 bushrat zahan        a 00900.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '54321 nabiha shah          a 00010.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '00000 end_of_file          d 00000.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: ERROR: Unknown command '99999 mr. anonymous        d 00000.00'
+Valid commands: login, logout, withdrawal, transfer, paybill, deposit, create, delete, disable, changeplan
+Enter command: Enter command: Enter command: Enter command: 
 End of input. Exiting.
