@@ -2,5 +2,5 @@ login
 admin
 create
 Jane Smith
-500
+2500
 logout

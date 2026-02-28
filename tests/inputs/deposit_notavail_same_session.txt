@@ -2,9 +2,9 @@ login
 standard
 John Doe
 deposit
-12345
-500
+00001
+1000
 withdrawal
-12345
+00001
 500
 logout
