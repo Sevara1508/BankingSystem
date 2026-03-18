@@ -121,7 +121,7 @@ class TransactionLog:
         record = self._build_record("04", "", account_number, amount, "")
         self.transactions.append(record)
 
-    def log_create(self, account_number, amount):
+    def log_create(self, account_number, amount, name=""):
         """
         Record account creation transaction (code 05).
 
@@ -130,8 +130,7 @@ class TransactionLog:
             amount (float): Initial balance
 
         """
-        record = self._build_record("05", "", account_number, amount, "SP")
-        self.transactions.append(record)
+        record = self._build_record("05", name, account_number, amount, "SP")
 
     def log_delete(self, account_number):
         """

@@ -1,0 +1,7 @@
+00001 John Doe             A 00300.00 0000 NP
+00002 Jane Smith           A 02409.90 0001 NP
+00003 Bob Johnson          A 00500.00 0000 NP
+00004 Alice Williams       D 01500.00 0000 NP
+00005 Charlie Brown        D 00749.90 0001 NP
+00006 Bushrat Zahan        A 02579.90 0001 NP
+END_OF_FILE

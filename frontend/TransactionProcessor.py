@@ -372,7 +372,7 @@ class TransactionProcessor:
         account_num = self.account_manager.create_account(name, balance)
 
         if account_num:
-            self.transaction_log.log_create(account_num, balance)
+            self.transaction_log.log_create(account_num, balance, name)
             print(f"Account created successfully. Account number: {account_num}")
         else:
             print("ERROR: Could not create account")
