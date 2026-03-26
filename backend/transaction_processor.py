@@ -46,7 +46,6 @@ def apply_all(accounts: dict, transactions: list) -> dict:
     """
     for txn in transactions:
         if txn["code"] == "00":
-            # End-of-session marker; nothing to process
             continue
         apply_transaction(accounts, txn)
 
@@ -57,22 +56,16 @@ def apply_transaction(accounts: dict, txn: dict) -> None:
     """
     Dispatches a single transaction to the appropriate private handler.
 
-    Before dispatching, verifies that the target account exists and is
-    active (disabled accounts are rejected for all operations except
-    delete). After the handler completes, applies the service fee via
-    apply_fee() and increments the account's total_transactions counter.
-
     Parameters:
         accounts (dict): Current account state.
-        txn      (dict): Single transaction dictionary with keys:
-                         code, name, account_number, amount, misc.
+        txn      (dict): Single transaction dictionary.
 
     Returns:
         None. Modifies accounts in place.
     """
-    code       = txn["code"]
-    acct_num   = txn["account_number"]
-    amount     = txn["amount"]
+    code     = txn["code"]
+    acct_num = txn["account_number"]
+    amount   = txn["amount"]
 
     # ---- Create does not require the account to pre-exist ---------------
     if code == "05":
@@ -103,23 +96,38 @@ def apply_transaction(accounts: dict, txn: dict) -> None:
         return
 
     # ---- Dispatch to the appropriate handler ----------------------------
+    # Track balance before to detect if handler silently aborted
+    balance_before = account["balance"]
+    succeeded = True
+
     if code == "01":
         _apply_withdrawal(account, amount)
+        if account["balance"] == balance_before:
+            succeeded = False
     elif code == "02":
-        # For transfers, the destination account number comes from txn["name"]
-        # field parsed as an account number embedded in the transaction misc
-        # context. Per the spec the destination is a second account number;
-        # we use the misc field as the destination account number string.
-        dst_num = txn["misc"].strip() if txn["misc"].strip() else txn["name"].strip()
+        dst_num = txn.get("misc", "").strip() or txn.get("name", "").strip()
         _apply_transfer(accounts, acct_num, dst_num, amount)
+        if account["balance"] == balance_before:
+            succeeded = False
     elif code == "03":
         _apply_paybill(account, amount)
+        if account["balance"] == balance_before:
+            succeeded = False
     elif code == "04":
         _apply_deposit(account, amount)
     elif code == "07":
         _apply_disable(account)
     elif code == "08":
         _apply_changeplan(account)
+    else:
+        log_constraint_error(
+            f"unknown transaction code {code} for account {acct_num}",
+            "UNKNOWN_CODE",
+        )
+        return  # No fee for unknown codes
+
+    if not succeeded:
+        return  # Constraint was violated; no fee, no counter increment
 
     # ---- Apply the per-transaction service fee and increment counter ----
     apply_fee(account)
@@ -162,18 +170,9 @@ def apply_fee(account: dict) -> None:
 
 def _apply_withdrawal(account: dict, amount: float) -> None:
     """
-    Processes a withdrawal (code 01) by subtracting the amount from the
-    account balance.
+    Processes a withdrawal (code 01).
 
-    Logs a constraint error and skips the withdrawal if the resulting
-    balance would be negative.
-
-    Parameters:
-        account (dict):  The account to debit.
-        amount  (float): The withdrawal amount in CAD.
-
-    Returns:
-        None. Modifies account['balance'] in place.
+    Logs a constraint error and skips if the resulting balance would be negative.
     """
     if account["balance"] - amount < 0.0:
         log_constraint_error(
@@ -189,21 +188,7 @@ def _apply_withdrawal(account: dict, amount: float) -> None:
 def _apply_transfer(accounts: dict, src_num: str, dst_num: str, amount: float) -> None:
     """
     Transfers funds between two accounts (code 02).
-
-    Deducts the amount from the source account and credits it to the
-    destination account. Both accounts must exist and both balances must
-    remain non-negative after the transfer.
-
-    Parameters:
-        accounts (dict):  Full accounts dictionary.
-        src_num  (str):   Source account number string.
-        dst_num  (str):   Destination account number string.
-        amount   (float): Transfer amount in CAD.
-
-    Returns:
-        None. Modifies account balances in place.
     """
-    # Validate destination account exists
     if dst_num not in accounts:
         log_constraint_error(
             f"transfer destination account {dst_num} does not exist",
@@ -214,7 +199,6 @@ def _apply_transfer(accounts: dict, src_num: str, dst_num: str, amount: float) -
     src = accounts[src_num]
     dst = accounts[dst_num]
 
-    # Validate source balance is sufficient
     if src["balance"] - amount < 0.0:
         log_constraint_error(
             f"account {src_num}: transfer of ${amount:.2f} would cause "
@@ -229,18 +213,7 @@ def _apply_transfer(accounts: dict, src_num: str, dst_num: str, amount: float) -
 
 def _apply_paybill(account: dict, amount: float) -> None:
     """
-    Processes a bill payment (code 03) by subtracting the amount from the
-    account balance.
-
-    Logs a constraint error and skips if the resulting balance would be
-    negative.
-
-    Parameters:
-        account (dict):  The account to debit.
-        amount  (float): The bill payment amount in CAD.
-
-    Returns:
-        None. Modifies account['balance'] in place.
+    Processes a bill payment (code 03).
     """
     if account["balance"] - amount < 0.0:
         log_constraint_error(
@@ -256,34 +229,16 @@ def _apply_paybill(account: dict, amount: float) -> None:
 def _apply_deposit(account: dict, amount: float) -> None:
     """
     Processes a deposit (code 04) by adding the amount to the account balance.
-
-    Deposits never violate any constraint because they can only increase
-    the balance.
-
-    Parameters:
-        account (dict):  The account to credit.
-        amount  (float): The deposit amount in CAD.
-
-    Returns:
-        None. Modifies account['balance'] in place.
     """
     account["balance"] = round(account["balance"] + amount, 2)
 
 
 def _apply_create(accounts: dict, txn: dict) -> None:
     """
-    Creates a new account (code 05) using information from the transaction.
+    Creates a new account (code 05).
 
-    The new account is added to the accounts dictionary with a zero balance
-    and zero transaction count. Logs a constraint error and skips if the
-    account number already exists.
-
-    Parameters:
-        accounts (dict): Full accounts dictionary.
-        txn      (dict): Transaction record for the create operation.
-
-    Returns:
-        None. Adds new entry to accounts in place.
+    FIX 1: Uses txn["amount"] as the opening balance (was hardcoded 0.00).
+    FIX 2: Accepts both short ("S"/"N") and full ("SP"/"NP") plan codes in misc.
     """
     acct_num = txn["account_number"]
 
@@ -294,18 +249,20 @@ def _apply_create(accounts: dict, txn: dict) -> None:
         )
         return
 
-    # Determine plan from misc field; default to NP if unrecognised
-    plan = txn["misc"].strip() if txn["misc"].strip() in {"S", "N"} else "NP"
-    if plan == "S":
+    # Accept "SP"/"S" → SP, "NP"/"N" → NP, anything else → NP
+    misc = txn.get("misc", "").strip()
+    if misc in {"SP", "S"}:
         plan = "SP"
-    elif plan == "N":
+    elif misc in {"NP", "N"}:
+        plan = "NP"
+    else:
         plan = "NP"
 
     accounts[acct_num] = {
         "account_number":     acct_num,
-        "name":               txn["name"],
+        "name":               txn.get("name", ""),
         "status":             "A",
-        "balance":            0.00,
+        "balance":            round(txn.get("amount", 0.00), 2),  # FIX: use amount
         "total_transactions": 0,
         "plan":               plan,
     }
@@ -314,16 +271,6 @@ def _apply_create(accounts: dict, txn: dict) -> None:
 def _apply_delete(accounts: dict, account_number: str) -> None:
     """
     Removes an account (code 06) from the accounts dictionary.
-
-    Deleted accounts will not appear in either output file because they
-    are simply absent from the dictionary when the file writers run.
-
-    Parameters:
-        accounts       (dict): Full accounts dictionary.
-        account_number (str):  Account number string to remove.
-
-    Returns:
-        None. Removes entry from accounts in place.
     """
     del accounts[account_number]
 
@@ -331,29 +278,13 @@ def _apply_delete(accounts: dict, account_number: str) -> None:
 def _apply_disable(account: dict) -> None:
     """
     Disables an account (code 07) by setting its status to "D".
-
-    The account remains in the output files with status D but will
-    reject all future transactions (except delete).
-
-    Parameters:
-        account (dict): The account record to disable.
-
-    Returns:
-        None. Modifies account['status'] in place.
     """
     account["status"] = "D"
 
 
 def _apply_changeplan(account: dict) -> None:
     """
-    Toggles the account plan (code 08) between Student Plan (SP) and
-    Non-Student Plan (NP).
-
-    Parameters:
-        account (dict): The account record to update.
-
-    Returns:
-        None. Modifies account['plan'] in place.
+    Toggles the account plan (code 08) between SP and NP.
     """
     if account["plan"] == "SP":
         account["plan"] = "NP"
