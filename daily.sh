@@ -36,8 +36,8 @@
 # --------------------------------------------------------------------------
 PYTHON="python3"                         # or "python" if python3 is not found
 FRONTEND="frontend/main.py"             # relative to repo root
-BACKEND="backend/main.py"              # relative to repo root
-NUM_SESSIONS=3                          # number of Front End sessions per day
+BACKEND="backend/main.py"              # relative to repo root  
+NUM_SESSIONS=6                           # number of Front End sessions per day
 
 # --------------------------------------------------------------------------
 # Argument validation
