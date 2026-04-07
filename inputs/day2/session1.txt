@@ -1,7 +1,0 @@
-login
-standard
-John Doe
-withdrawal
-00001
-50
-logout

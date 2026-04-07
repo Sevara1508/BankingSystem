@@ -1,8 +1,0 @@
-login
-standard
-Jane Smith
-paybill
-00002
-FI
-50
-logout

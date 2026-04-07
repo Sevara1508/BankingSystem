@@ -1,6 +1,0 @@
-login
-admin
-changeplan
-Bushrat Zahan
-00006
-logout

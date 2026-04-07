@@ -1,7 +1,0 @@
-login
-standard
-Bushrat Zahan
-deposit
-00006
-200
-logout

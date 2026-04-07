@@ -1,8 +1,0 @@
-login
-standard
-Bushrat Zahan
-paybill
-00006
-CQ
-100
-logout

@@ -1,7 +1,0 @@
-login
-standard
-Charlie Brown
-deposit
-00005
-100
-logout

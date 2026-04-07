@@ -1,6 +1,0 @@
-login
-admin
-create
-New User
-500
-logout

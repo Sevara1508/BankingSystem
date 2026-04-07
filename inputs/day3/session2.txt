@@ -1,7 +1,0 @@
-login
-standard
-Bob Johnson
-deposit
-00003
-50
-logout

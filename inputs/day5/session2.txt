@@ -1,7 +1,0 @@
-login
-standard
-Charlie Brown
-withdrawal
-00005
-50
-logout
