@@ -1,0 +1,6 @@
+login
+admin
+disable
+Bob Johnson
+00003
+logout

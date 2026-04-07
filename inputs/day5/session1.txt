@@ -1,0 +1,7 @@
+login
+standard
+Bushrat Zahan
+withdrawal
+00006
+100
+logout
