@@ -79,14 +79,9 @@ class TransactionLog:
 
     def log_transfer(self, account_number, amount):
         """
-        Record ONE transfer transaction (code 02).
+        Record transfer transaction (code 02).
 
-        NOTE:
-        A complete transfer requires TWO records:
-        - One for the source account (debit)
-        - One for the destination account (credit)
-
-        TransactionProcessor is responsible for calling this method twice.
+        Logs one record for the account involved.
 
         Args:
             account_number (str): Account involved in transfer

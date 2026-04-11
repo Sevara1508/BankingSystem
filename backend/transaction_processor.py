@@ -33,9 +33,12 @@ def apply_all(accounts: dict, transactions: list) -> dict:
     Main dispatch loop. Iterates every transaction and applies it to the
     in-memory accounts dictionary.
 
-    End-of-session records (code 00) are silently skipped. All other codes
-    are forwarded to apply_transaction(). Returns the fully updated accounts
-    dictionary after all transactions have been processed.
+    End-of-session records (code 00) are silently skipped. Transfer transactions
+    (code 02) are handled in pairs: the first 02 is the source, the second is
+    the destination. All other codes are forwarded to apply_transaction().
+
+    Returns the fully updated accounts dictionary after all transactions have
+    been processed.
 
     Parameters:
         accounts     (dict): Account records keyed by account number string.
@@ -44,10 +47,29 @@ def apply_all(accounts: dict, transactions: list) -> dict:
     Returns:
         dict: The updated accounts dictionary.
     """
+    pending_transfer = None
     for txn in transactions:
         if txn["code"] == "00":
             continue
+        if txn["code"] == "02":
+            if pending_transfer is None:
+                pending_transfer = txn
+                continue
+            else:
+                # Complete the transfer
+                src_num = pending_transfer["account_number"]
+                dst_num = txn["account_number"]
+                amount = pending_transfer["amount"]
+                _apply_transfer(accounts, src_num, dst_num, amount)
+                # Apply fee and increment counter for source
+                account = accounts[src_num]
+                apply_fee(account)
+                account["total_transactions"] += 1
+                pending_transfer = None
+                continue
+        # For other codes
         apply_transaction(accounts, txn)
+    return accounts
 
     return accounts
 
@@ -102,11 +124,6 @@ def apply_transaction(accounts: dict, txn: dict) -> None:
 
     if code == "01":
         _apply_withdrawal(account, amount)
-        if account["balance"] == balance_before:
-            succeeded = False
-    elif code == "02":
-        dst_num = txn.get("misc", "").strip() or txn.get("name", "").strip()
-        _apply_transfer(accounts, acct_num, dst_num, amount)
         if account["balance"] == balance_before:
             succeeded = False
     elif code == "03":
@@ -284,9 +301,12 @@ def _apply_disable(account: dict) -> None:
 
 def _apply_changeplan(account: dict) -> None:
     """
-    Toggles the account plan (code 08) between SP and NP.
+    Changes the account plan from SP to NP (code 08). No reverse allowed.
     """
-    if account["plan"] == "SP":
-        account["plan"] = "NP"
-    else:
-        account["plan"] = "SP"
+    if account["plan"] != "SP":
+        log_constraint_error(
+            f"account {account['account_number']}: changeplan only allowed from SP to NP",
+            "INVALID_PLAN_CHANGE",
+        )
+        return
+    account["plan"] = "NP"

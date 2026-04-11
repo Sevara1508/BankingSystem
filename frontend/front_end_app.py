@@ -59,15 +59,25 @@ class FrontEndApp:
                     continue
                 
                 if command == "quit":
-                    print("\nExiting banking system. Goodbye!")
+                    if self.transaction_processor.session.is_logged_in():
+                        print("Logging out before quitting...")
+                        self.transaction_processor.process_logout()
+                    else:
+                        print("\nExiting banking system. Goodbye!")
                     break
                     
                 self.dispatch_command(command)
                 
             except EOFError:
+                if self.transaction_processor.session.is_logged_in():
+                    print("Logging out...")
+                    self.transaction_processor.process_logout()
                 print("\nEnd of input. Exiting.")
                 break
             except KeyboardInterrupt:
+                if self.transaction_processor.session.is_logged_in():
+                    print("\nLogging out...")
+                    self.transaction_processor.process_logout()
                 print("\n\nInterrupted. Exiting.")
                 break
 
